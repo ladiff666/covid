@@ -33,8 +33,9 @@ def get_data():
                         n_ = []
         for i in range(0,len(list_n)):
                         list_n[i] = list_n[i][1:]
-                        list_n[i][1] = list_n[i][1].replace(",", "")
-        list_n = sorted(list_n, key=lambda colonnes: int(colonnes[1]),reverse = True)
+                        
+        list_n = sorted(list_n, key=lambda colonnes: int(colonnes[1].replace(",", "")),reverse = True)
+
         return list_n,total_cases,death,Active_Cases,Recovered,Closed_Cases
 def get_columns():
         columns = []
@@ -43,6 +44,12 @@ def get_columns():
                 if t != '\n' :
                         columns.append(t.text)
         columns = columns[:-4]
-
         columns[-2] = columns[-2].splitlines()[0] + columns[-2].splitlines()[1]
+
         return columns
+
+if __name__ == '__main__':
+        data = get_columns()
+        columns_name = get_columns()
+        print(data)
+        print(columns_name)
